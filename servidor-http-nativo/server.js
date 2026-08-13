@@ -9,7 +9,7 @@ const server = http.createServer((req, res) =>{
     res.statusCode = 201;
     res.setHeader('Content-Type' , ' application/json; charset=utf-8');
 
-    res.end(JSON.stringify({ status: "ok" }))
+    (JSON.stringify({ status: "ok" }))
 });
 
 server.listen(PORTA, () =>{
@@ -18,3 +18,4 @@ server.listen(PORTA, () =>{
 });
 
 
+// o codigo nao iria responder a mensagem no navegador,sem o res.end().
