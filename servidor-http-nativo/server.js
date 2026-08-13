@@ -6,10 +6,10 @@ const server = http.createServer((req, res) =>{
 
     console.log(`Requisicao recebida! ${req.method} ${req.irI}`)
 
-    res.statusCode = 200;
+    res.statusCode = 201;
     res.setHeader('Content-Type' , 'text/plain; charset=utf-8')
 
-    res.end("Servidor nativo funcionando!")
+    res.end("Recurso criado!")
 });
 
 server.listen(PORTA, () =>{
