@@ -15,17 +15,21 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'application/json; charset=utf-8')
 
     if (req.method == "GET" && req.url == "/contato") {
+         console.log(`Requisicao recebida! ${req.method} ${req.irI}`)
         return res.end(JSON.stringify({data:
             {numero_telefone: "67 99999 9999",
                 endereco: "Rua da Alegria, 99, Centro"}}));
     }
 
+
     if (req.method == "GET" && req.url == "/status") {
+         console.log(`Requisicao recebida! ${req.method} ${req.irI}`)
         return res.end(JSON.stringify({data:
             {"status": "ok"}}));
     }
 
     if (req.method == "GET" && req.url == "/produtos") {
+         console.log(`Requisicao recebida! ${req.method} ${req.irI}`)
         return res.end(JSON.stringify(produtos));
     }
     else{
@@ -39,3 +43,4 @@ const server = http.createServer((req, res) => {
 server.listen(porta, () => {
     console.log(`Servidor ouvindo na porta ${porta}`)
 });
+
