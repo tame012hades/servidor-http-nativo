@@ -1,21 +1,37 @@
-const http = require('node:http');
+import http from 'node:http'
+import { URL } from 'node:url'
 
-const PORTA = 3000;
+const porta = 3000
 
-const server = http.createServer((req, res) =>{
+const produtos = [
+    {id: 1, nome: "Sabonete"},
+    {id: 2, nome: "Volante LogiTech G923"},
+    {id: 3, nome: "Sabão em Pó"},
+    {id: 4, nome: "Pelúcia do Sonic"},
+]
 
-    console.log(`Requisicao recebida! ${req.method} ${req.irI}`)
+const server = http.createServer((req, res) => {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
 
-    res.statusCode = 201;
-    res.setHeader('Content-Type' , ' application/json; charset=utf-8');
+    if (req.method == "GET" && req.url == "/contato") {
+        return res.end(JSON.stringify({data:
+            {numero_telefone: "67 99999 9999",
+                endereco: "Rua da Alegria, 99, Centro"}}));
+    }
 
-    (JSON.stringify({ status: "ok" }))
+    if (req.method == "GET" && req.url == "/status") {
+        return res.end(JSON.stringify({data:
+            {"status": "ok"}}));
+    }
+
+    if (req.method == "GET" && req.url == "/produtos") {
+        return res.end(JSON.stringify(produtos));
+    }
+
+    res.end(JSON.stringify({data: "Página Inicial"}))
+})
+
+server.listen(porta, () => {
+    console.log(`Servidor ouvindo na porta ${porta}`)
 });
-
-server.listen(PORTA, () =>{
-    console.log(`Servidor funcionando na porta ${PORTA}`)
-    console.log(`${new Date().toISOString()}`);
-});
-
-
-// o codigo nao iria responder a mensagem no navegador,sem o res.end().
